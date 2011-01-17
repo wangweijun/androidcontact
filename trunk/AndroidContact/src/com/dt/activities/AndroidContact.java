@@ -22,7 +22,7 @@ public class AndroidContact extends Activity implements OnClickListener {
 		Button btnBackup = (Button) findViewById(R.id.btnBackup);
 		btnBackup.setOnClickListener(this);
 
-		//ff
+		// ff
 	}
 
 	public void onClick(View v) {
@@ -32,8 +32,8 @@ public class AndroidContact extends Activity implements OnClickListener {
 			ArrayList<HashMap<String, String>> contactList = com.dt.utils.PhoneUtils
 					.getContacts(getContentResolver());
 
-			//String url = "http://contact.tut.vn/tools/backup.php";
-			String url = "http://10.0.2.2/1/myscript.php";
+			String url = "http://contact.tut.vn/tools/backup.php";
+		//	String url = "http://10.0.2.2/1/myscript.php";
 
 			/*
 			 * int contactCount = contactList.size();
@@ -48,17 +48,18 @@ public class AndroidContact extends Activity implements OnClickListener {
 			 */
 
 			// /*
-			
-			String xmlData = com.dt.utils.DataUtils
-					.createXMLData(contactList);
-			
-			Toast.makeText(AndroidContact.this, xmlData, Toast.LENGTH_LONG).show();
-			
-			
+
+			// String xmlData = com.dt.utils.DataUtils
+			// .createXMLData(contactList);
+
+			String csvData = com.dt.utils.DataUtils.createCSVData(contactList);
+
+			Toast.makeText(AndroidContact.this, csvData, Toast.LENGTH_LONG)
+					.show();
+
 			HttpResponse response = com.dt.http.HttpSender.doPost(url,
-						xmlData, "0903090209", "1q2w3e");
-			
-			
+			 csvData, "0903090209", "1q2w3e");
+
 		}
 
 	}
