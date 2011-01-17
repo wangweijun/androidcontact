@@ -17,7 +17,7 @@ import android.provider.SyncStateContract.Constants;
 import android.util.Log;
 
 public class Server implements Runnable {
-	
+	int a;
 	// get the response times when ping to servers
 	public static long[] GetICMPs(String[] serverNames) {
 		long[] responseTime = new long[serverNames.length];
