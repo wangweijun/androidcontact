@@ -6,8 +6,9 @@
 	<TextView android:id="@+id/tv_login" android:layout_height="wrap_content"
 		android:text="User Login" android:layout_width="wrap_content"></TextView>
 		
-	<EditText android:text="Enter your password" android:id="@+id/et_password"
-		android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+	<EditText android:text="Enter your password" 
+		android:id="@+id/et_password" android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"></EditText>
 
 
 	<LinearLayout android:id="@+id/LinearLayout01"
@@ -21,4 +22,5 @@
 	
 		
 	</LinearLayout>
+
 </LinearLayout>
