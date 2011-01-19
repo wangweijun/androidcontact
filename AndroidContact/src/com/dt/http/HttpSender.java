@@ -92,7 +92,7 @@ public class HttpSender {
 				try {
 					instream = responseEntity.getContent();
 					byte[] buff = new byte[128];
-					//;
+					// ;
 					instream.read(buff);
 
 					String responseContent = new String(buff);
@@ -126,5 +126,90 @@ public class HttpSender {
 		return response;
 
 	}
+	
+	
+	/// get the response string from server
+	public static String getResponseContent(HttpResponse response){
+		String responseString = "";
+		
+		if (response != null) {
+			Log.d("AndroidContact", "Successful! Status code: "
+					+ response.getStatusLine().getStatusCode());
+			HttpEntity responseEntity = response.getEntity();
+			if (responseEntity != null) {
+				InputStream instream = null;
+
+				try {
+					instream = responseEntity.getContent();
+					byte[] buff = new byte[128];
+					// ;
+					instream.read(buff);
+
+					responseString = new String(buff);
+					Log.d("Response", responseString);
+
+				} catch (IOException ex) {
+
+					try {
+						throw ex;
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} catch (RuntimeException ex) {
+
+					throw ex;
+				} finally {
+					try {
+						instream.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+				}
+			} else {
+				Log.d("ResponseEntity", "null");
+			}
+		} else {
+			responseString += "The Response is Null";
+			Log.d("Fail", "Post Fail!");
+		}
+		
+		return responseString;
+		
+	}
+	
+	///
+	
+	public static HttpResponse doPost(String url,
+			String userName, String passWord) {
+		HttpClient httpclient = new DefaultHttpClient();
+
+		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+		formparams.add(new BasicNameValuePair("user", userName));
+		formparams.add(new BasicNameValuePair("pass", passWord));
+		//formparams.add(new BasicNameValuePair("action", action));
+		
+		UrlEncodedFormEntity entity = null;
+
+		HttpPost postRequest = new HttpPost(url);
+		
+		HttpResponse response = null;
+
+		try {
+			entity = new UrlEncodedFormEntity(formparams);
+
+			postRequest.setEntity(entity);
+			response = httpclient.execute(postRequest);
+			Log.d("Yahoo", "Successful!");
+
+		} catch (Exception e) {
+			Log.d("Process status", "Proccess fail!");
+
+		}
+		
+		return response;
+		
+	}
+
 
 }
