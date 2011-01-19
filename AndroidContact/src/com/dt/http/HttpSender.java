@@ -92,7 +92,7 @@ public class HttpSender {
 				try {
 					instream = responseEntity.getContent();
 					byte[] buff = new byte[128];
-					;
+					//;
 					instream.read(buff);
 
 					String responseContent = new String(buff);
