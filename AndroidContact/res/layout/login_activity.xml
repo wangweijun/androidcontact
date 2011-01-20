@@ -2,25 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical" android:gravity="center">
-	
+
 	<TextView android:id="@+id/tv_login" android:layout_height="wrap_content"
-		android:text="User Login" android:layout_width="wrap_content"></TextView>
-		
-	<EditText android:text="Enter your password" 
-		android:id="@+id/et_password" android:layout_height="wrap_content" 
-		android:layout_width="fill_parent"></EditText>
+		android:text="User Login" android:layout_width="wrap_content"
+		android:textSize="25px"></TextView>
+
+	<EditText android:text="" android:id="@+id/et_password"
+		android:layout_height="wrap_content" android:layout_width="fill_parent"
+		android:width="200px" android:password="true"></EditText>
 
 
 	<LinearLayout android:id="@+id/LinearLayout01"
 		android:layout_width="wrap_content" android:layout_height="wrap_content">
-		
+
 		<Button android:id="@+id/btn_login" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Login" />
-		
+			android:layout_height="wrap_content" android:text="Login" />
+
 		<Button android:id="@+id/btn_register" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Register" />
-	
-		
+			android:layout_height="wrap_content" android:text="Register" />
+
+
 	</LinearLayout>
 
 </LinearLayout>
