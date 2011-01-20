@@ -1,20 +1,14 @@
 package com.dt.utils;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.IOException;
-import java.net.HttpURLConnection;
+
 import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
+
+
 import java.net.UnknownHostException;
 import java.util.Calendar;
 
-import android.provider.SyncStateContract.Constants;
-import android.util.Log;
 
 public class Server implements Runnable {
 	int a;
