@@ -3,14 +3,25 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical">
 
+	<LinearLayout android:id="@+id/LinearLayout04"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:gravity="center_horizontal">
+
+		<TextView android:text="Registration" android:id="@+id/tv_registration"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textSize="25px" android:textColor="@color/White"></TextView>
+
+	</LinearLayout>
+
 	<LinearLayout android:id="@+id/LinearLayout01"
 		android:layout_width="wrap_content" android:layout_height="wrap_content">
 
 		<TextView android:text="Password" android:id="@+id/tv_registerPassword"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 
-		<EditText android:text="Your Password" android:id="@+id/et_registerPassword"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+		<EditText android:text="" android:id="@+id/et_registerPassword"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:width="200px" android:password="true"></EditText>
 
 	</LinearLayout>
 
@@ -20,8 +31,9 @@
 		<TextView android:text="Confirm  " android:id="@+id/tv_confirmRegisterPassword"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 
-		<EditText android:text="Confirm            " android:id="@+id/et_confirmRegisterPassword"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+		<EditText android:text="" android:id="@+id/et_confirmRegisterPassword"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:width="200px" android:password="true"></EditText>
 
 	</LinearLayout>
 
@@ -29,8 +41,9 @@
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:gravity="center_horizontal">
 
-		<Button android:text="OK" android:id="@+id/btn_registerOK"
-			android:layout_height="wrap_content" android:layout_width="wrap_content"></Button>
+		<Button android:text="  OK  " android:id="@+id/btn_registerOK"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:textSize="20px"></Button>
 
 
 	</LinearLayout>
