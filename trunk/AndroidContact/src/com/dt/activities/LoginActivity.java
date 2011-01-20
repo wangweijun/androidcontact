@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity{
 	
@@ -16,10 +18,12 @@ public class LoginActivity extends Activity{
 	String phoneNumber = "";
 	boolean isMatch = false;
 	EditText etPassword;
-	final String loginUrl = "http://";
+	final String loginUrl = "http://zoo.vn/tools/dang_nhap.php";
 	
 	Button btnLogin;
 	Button btnRegister;
+	
+	TextView tvLogin;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,6 @@ public class LoginActivity extends Activity{
 		});
 		
 		TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-
 		phoneNumber = tm.getLine1Number();
 		
 		btnLogin = (Button) this.findViewById(R.id.btn_login);
@@ -50,19 +53,29 @@ public class LoginActivity extends Activity{
 				if(arg0.getId() == R.id.btn_login){
 					
 					inputPassword = etPassword.getText().toString();
+					Toast.makeText(LoginActivity.this, "Password inputed: " + inputPassword, Toast.LENGTH_LONG)
+					.show();
+					Toast.makeText(LoginActivity.this, "Username (phone no.): " + phoneNumber, Toast.LENGTH_LONG)
+					.show();
 								
 					isMatch = com.dt.utils.Authentication.doLogin(loginUrl, phoneNumber, inputPassword);
 					
 					if(isMatch){
 						LoginActivity.this.finish();
+						
 						Intent intent = new Intent( LoginActivity.this, AndroidContact.class);
+						intent.putExtra("password", inputPassword);
 						startActivity(intent);
 					
+					}
+					else{
+						
 					}
 				}
 			}
 			
 		});
+		
 		
 		btnRegister = (Button) this.findViewById(R.id.btn_register);
 		btnRegister.setOnClickListener(new OnClickListener(){
