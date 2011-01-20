@@ -126,12 +126,11 @@ public class HttpSender {
 		return response;
 
 	}
-	
-	
-	/// get the response string from server
-	public static String getResponseContent(HttpResponse response){
+
+	// / get the response string from server
+	public static String getResponseContent(HttpResponse response) {
 		String responseString = "";
-		
+
 		if (response != null) {
 			Log.d("AndroidContact", "Successful! Status code: "
 					+ response.getStatusLine().getStatusCode());
@@ -173,26 +172,25 @@ public class HttpSender {
 			responseString += "The Response is Null";
 			Log.d("Fail", "Post Fail!");
 		}
-		
+
 		return responseString;
-		
+
 	}
-	
-	///
-	
-	public static HttpResponse doPost(String url,
-			String userName, String passWord) {
+
+	// /
+
+	public static HttpResponse doPost(String url, String userName,
+			String passWord) {
 		HttpClient httpclient = new DefaultHttpClient();
 
 		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 		formparams.add(new BasicNameValuePair("user", userName));
 		formparams.add(new BasicNameValuePair("pass", passWord));
-		//formparams.add(new BasicNameValuePair("action", action));
-		
+
 		UrlEncodedFormEntity entity = null;
 
 		HttpPost postRequest = new HttpPost(url);
-		
+
 		HttpResponse response = null;
 
 		try {
@@ -206,10 +204,9 @@ public class HttpSender {
 			Log.d("Process status", "Proccess fail!");
 
 		}
-		
-		return response;
-		
-	}
 
+		return response;
+
+	}
 
 }
