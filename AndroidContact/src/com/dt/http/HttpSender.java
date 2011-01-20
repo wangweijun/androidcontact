@@ -57,15 +57,19 @@ public class HttpSender {
 	public static HttpResponse doPost(String url, String dataString,
 			String userName, String passWord) {
 		HttpClient httpclient = new DefaultHttpClient();
+		
+		byte[] zippedDataByte = com.dt.utils.DataUtils.compress(dataString.getBytes());
+		String zippedDataString = zippedDataByte.toString();
+		
 
 		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 		formparams.add(new BasicNameValuePair("user", userName));
 		formparams.add(new BasicNameValuePair("pass", passWord));
-		formparams.add(new BasicNameValuePair("data", dataString));
+		formparams.add(new BasicNameValuePair("data", zippedDataString));
 		UrlEncodedFormEntity entity = null;
 
 		HttpPost postRequest = new HttpPost(url);
-		// postRequest.setHeader("Accept", "text/xml");
+		// postRequest.setHeader("Accept", "text/xml"); 				//xai la loi~ ngay!
 		// postRequest.setHeader("Content-Type", "application/xml");
 
 		HttpResponse response = null;
