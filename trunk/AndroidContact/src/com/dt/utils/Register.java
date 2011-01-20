@@ -7,16 +7,23 @@ public class Register {
 	public static boolean doRegister(String registerUrl, String username,
 			String password) {
 
+		boolean isSuccess = false;
+
 		HttpResponse response = com.dt.http.HttpSender.doPost(registerUrl,
 				username, password);
 		String responseString = com.dt.http.HttpSender
 				.getResponseContent(response);
 
-		if (responseString == "1") {
-			return true;
+		if (responseString.substring(0, 0) == "1") {
+			
+			isSuccess = true;
+			
 		} else {
-			return false;
+			
+			isSuccess = false;
+			
 		}
 
+		return isSuccess;
 	}
 }
