@@ -2,25 +2,33 @@ package com.dt.utils;
 
 import org.apache.http.HttpResponse;
 
+import android.util.Log;
+
 public class Authentication {
 
 	public static boolean doLogin(String loginUrl, String username,
 			String password) {
-		boolean isSuccess = false;
+		//boolean isSuccess = false;
 
 		HttpResponse response = com.dt.http.HttpSender.doPost(loginUrl,
 				username, password);
 
 		String responseString = com.dt.http.HttpSender
 				.getResponseContent(response);
+		String result = responseString.substring(0, 1).trim();
+		Log.d("Login resultString", result);
 
-		if (responseString.substring(0, 0) == "1") {
-			isSuccess = true;
+		if ( result.equalsIgnoreCase("1")) {
+			
+			return true;
+			
 		} else {
-			isSuccess = false;
+			
+			return false;
+			
 		}
 
-		return isSuccess;
+		//return isSuccess;
 
 	}
 

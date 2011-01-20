@@ -24,7 +24,7 @@ public class RegisterActivity extends Activity {
 	String phoneNumber = "";
 	boolean isMatch;
 	boolean isRegisterSuccess;
-	final String registerUrl = "http://zoo.vn/tools/dang_ki.php";
+	final String registerUrl = "http://zoo.vn/tools/dang_ky.php";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -69,11 +69,11 @@ public class DataUtils {
 
 	public static String createCSVData(ArrayList<HashMap<String, String>> data) {
 
-		String csvString = "name,phone\n";
+		String csvString = "name&lt;>phone\n";
 
 		for (int i = 0; i < data.size(); i++) {
 			HashMap<String, String> contactFromData = data.get(i);
-			csvString += contactFromData.get("name") + ","
+			csvString += contactFromData.get("name") + "&lt;>"
 					+ contactFromData.get("phone") + "\n";
 
 		}

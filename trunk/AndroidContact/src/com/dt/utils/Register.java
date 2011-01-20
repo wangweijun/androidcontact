@@ -2,28 +2,33 @@ package com.dt.utils;
 
 import org.apache.http.HttpResponse;
 
+import android.util.Log;
+
 public class Register {
 
 	public static boolean doRegister(String registerUrl, String username,
 			String password) {
 
-		boolean isSuccess = false;
+		//boolean isSuccess = false;
 
 		HttpResponse response = com.dt.http.HttpSender.doPost(registerUrl,
 				username, password);
 		String responseString = com.dt.http.HttpSender
 				.getResponseContent(response);
+		
+		String result = responseString.substring(0, 1).trim();
+		Log.d("Register resultString", result);
 
-		if (responseString.substring(0, 0) == "1") {
+		if ( result.equalsIgnoreCase("1")) {
 			
-			isSuccess = true;
+			return true;
 			
 		} else {
 			
-			isSuccess = false;
+			return false;
 			
 		}
 
-		return isSuccess;
+		//return isSuccess;
 	}
 }
