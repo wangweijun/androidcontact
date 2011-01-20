@@ -1,5 +1,8 @@
 package com.dt.utils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -79,6 +82,21 @@ public class DataUtils {
 		}
 
 		return csvString;
+	}
+	
+	//compress an input byte array
+	public static byte[] compress(byte[] input) {
+		try {
+			final ByteArrayOutputStream targetStream = new ByteArrayOutputStream(
+					input.length);
+			OutputStream outputStream = new java.util.zip.GZIPOutputStream(
+					targetStream);
+			outputStream.write(input);
+			outputStream.close();
+			return targetStream.toByteArray();
+		} catch (IOException e) {
+			throw new RuntimeException("impossible exception?", e);
+		}
 	}
 
 }
