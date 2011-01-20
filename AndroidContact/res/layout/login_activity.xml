@@ -5,7 +5,7 @@
 
 	<TextView android:id="@+id/tv_login" android:layout_height="wrap_content"
 		android:text="User Login" android:layout_width="wrap_content"
-		android:textSize="25px"></TextView>
+		android:textSize="25px" android:textColor="@color/White"></TextView>
 
 	<EditText android:text="" android:id="@+id/et_password"
 		android:layout_height="wrap_content" android:layout_width="fill_parent"
@@ -16,10 +16,12 @@
 		android:layout_width="wrap_content" android:layout_height="wrap_content">
 
 		<Button android:id="@+id/btn_login" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Login" />
+			android:layout_height="wrap_content" android:text="Login"
+			android:width="90px" android:textSize="15px" />
 
 		<Button android:id="@+id/btn_register" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Register" />
+			android:layout_height="wrap_content" android:text="Register"
+			android:width="90px" android:textSize="15px" />
 
 
 	</LinearLayout>

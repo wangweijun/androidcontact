@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -30,6 +31,8 @@ public class LoginActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 		
+		
+		
 		etPassword = (EditText) this.findViewById(R.id.et_password);
 		etPassword.setOnClickListener(new OnClickListener(){
 
@@ -44,6 +47,8 @@ public class LoginActivity extends Activity{
 		
 		TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
 		phoneNumber = tm.getLine1Number();
+		
+		tvLogin = (TextView) this.findViewById(R.id.tv_login);
 		
 		btnLogin = (Button) this.findViewById(R.id.btn_login);
 		btnLogin.setOnClickListener(new OnClickListener(){
@@ -60,7 +65,9 @@ public class LoginActivity extends Activity{
 								
 					isMatch = com.dt.utils.Authentication.doLogin(loginUrl, phoneNumber, inputPassword);
 					
+					
 					if(isMatch){
+						Log.d("Login result", "Successful");
 						LoginActivity.this.finish();
 						
 						Intent intent = new Intent( LoginActivity.this, AndroidContact.class);
@@ -69,6 +76,8 @@ public class LoginActivity extends Activity{
 					
 					}
 					else{
+						tvLogin.setText("Login False! Again!");
+						Log.d("Login result", "False");
 						
 					}
 				}
