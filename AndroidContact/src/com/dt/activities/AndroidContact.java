@@ -6,20 +6,38 @@ import java.util.HashMap;
 import org.apache.http.HttpResponse;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class AndroidContact extends Activity implements OnClickListener {
-	/** Called when the activity is first created. */
+
+	final String backupUrl = "http://contact.tut.vn/tools/backup.php";
+	Button btnBackup;
+	String password = "";
+	String phoneNumber = "";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.backup_restore_activity);
 
-		Button btnBackup = (Button) findViewById(R.id.btnBackup);
+		// get saved password
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			password = extras.getString("password");
+		}
+
+		// get the owner's phonenumber to use as username
+		TelephonyManager tm = (TelephonyManager) this
+				.getSystemService(Context.TELEPHONY_SERVICE);
+		phoneNumber = tm.getLine1Number();
+
+		btnBackup = (Button) findViewById(R.id.btnBackup);
 		btnBackup.setOnClickListener(this);
 
 		// ff
@@ -32,8 +50,9 @@ public class AndroidContact extends Activity implements OnClickListener {
 			ArrayList<HashMap<String, String>> contactList = com.dt.utils.PhoneUtils
 					.getContacts(getContentResolver());
 
-			String url = "http://contact.tut.vn/tools/backup.php";
-		//	String url = "http://10.0.2.2/1/myscript.php";
+			// String url = "http://contact.tut.vn/tools/backup.php";
+			// String url = "http://10.0.2.2/1/myscript.php"; //url of server on
+			// localhost
 
 			/*
 			 * int contactCount = contactList.size();
@@ -57,8 +76,9 @@ public class AndroidContact extends Activity implements OnClickListener {
 			Toast.makeText(AndroidContact.this, csvData, Toast.LENGTH_LONG)
 					.show();
 
-			HttpResponse response = com.dt.http.HttpSender.doPost(url,
-			 csvData, "0903090209", "1q2w3e");
+			@SuppressWarnings("unused")
+			HttpResponse response = com.dt.http.HttpSender.doPost(backupUrl,
+					csvData, phoneNumber, password);
 
 		}
 
