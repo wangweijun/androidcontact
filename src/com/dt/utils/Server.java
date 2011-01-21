@@ -21,7 +21,8 @@ public class Server implements Runnable {
 		// start one thread for one server connection 
 		for (int i = 0; i < serverNames.length; i++) {
 			servers[i] = new Server(serverNames[i]);
-			servers[i].run();
+			Thread thread = new Thread(servers[i]);
+			thread.start();
 		}
 		
 		// Wait until all the ping is finished or TTL reach the limit
