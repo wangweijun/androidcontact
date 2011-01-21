@@ -11,9 +11,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		<activity android:name="FileReviewer">
+			<intent-filter>
+				<action android:name="com.dt.activities.FileReviewer"/>
+			</intent-filter>
+		</activity>
 		<activity android:name="FileUploader">
 			<intent-filter>
-				<action android:name="com.dt.activities.File_Uploader"/>
+				<action android:name="com.dt.activities.FileUploader"/>
 			</intent-filter>
 		</activity>
     </application>
