@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FileChooser extends ListActivity {
@@ -28,6 +29,7 @@ public class FileChooser extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.setContentView(R.layout.main_list_view_layout);
 		currentDir = new File("/sdcard/");
 		fill(currentDir);
 	}
@@ -74,6 +76,8 @@ public class FileChooser extends ListActivity {
 				selectedFiles.add(o.getPath());
 			}
 			l.setItemChecked(position, true);
+			TextView fileViews = (TextView) findViewById(R.id.FileViews);
+			fileViews.setText(fileViews.getText()+"\n"+o.getPath());
 		}
 	}
 	
