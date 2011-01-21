@@ -6,12 +6,14 @@ import com.dt.activities.R;
 
 import android.content.Context;
 
+import android.opengl.Visibility;
 import android.view.LayoutInflater;
 
 import android.view.View;
 
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 
 import android.widget.TextView;
 
@@ -58,7 +60,13 @@ public class FileArrayAdapter extends ArrayAdapter<Option> {
 		final Option o = items.get(position);
 
 		if (o != null) {
-
+			/*CheckBox chkbx = (CheckBox) v.findViewById(R.id.row_chbox);
+			if ((o.getData().equalsIgnoreCase(" "))
+					|| o.getData().equalsIgnoreCase("parent directory"))
+			{
+				chkbx.setVisibility(View.INVISIBLE);
+			}
+			else chkbx.setVisibility(View.VISIBLE);*/
 			TextView t1 = (TextView) v.findViewById(R.id.TextView01);
 
 			TextView t2 = (TextView) v.findViewById(R.id.TextView02);

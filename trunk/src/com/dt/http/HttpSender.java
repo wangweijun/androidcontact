@@ -33,7 +33,6 @@ public class HttpSender {
 		try {
 			StringEntity strEntity = new StringEntity(data);
 			strEntity.setContentType("application/xml");
-
 			postRequest.setEntity(strEntity);
 
 			response = httpclient.execute(postRequest);
