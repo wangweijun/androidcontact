@@ -9,6 +9,11 @@ import com.dt.http.HttpFileUpload;
 
 public class UploadController {
 	static int numberPart = 3;
+	public static boolean Upload(String server,String filePath) throws IOException
+	{
+		File file = new File(filePath);
+		return UpLoad(server, file);
+	}
 	public static boolean UpLoad(String server,File file) throws IOException
 	{
 		long[] partSize = new long[numberPart];
