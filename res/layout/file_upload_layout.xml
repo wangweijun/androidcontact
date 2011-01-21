@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout android:id="@+id/TableLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<TableRow>
+		<TextView android:id="@+id/FileList" android:layout_height="wrap_content"
+			android:text="----------- File list ------------\n" android:layout_width="wrap_content" />
+	</TableRow>
+	<TableRow>
+		<TextView android:id="@+id/FilesUploaded"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" 
+			android:text="\n\n--------- Files uploaded -----------"/>
+	</TableRow>
+</TableLayout>
