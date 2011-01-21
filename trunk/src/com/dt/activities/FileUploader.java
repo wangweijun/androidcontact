@@ -1,49 +1,40 @@
 package com.dt.activities;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-import android.app.ListActivity;
+import com.dt.utils.UploadController;
+
+import android.app.Activity;
 import android.os.Bundle;
-import android.text.TextUtils.StringSplitter;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-public class FileUploader extends ListActivity{
-	TextView selection;
-	String[] filesName;
-	public FileUploader()
-	{
-		
-	}
-	public FileUploader(String[] strings)
-	{
-		filesName = strings.clone();
-	}
-    /** Called when the activity is first created. */
-	@Override
+public class FileUploader extends Activity {
+	ArrayList<String> filesName;
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		ArrayList<String> extra = this.getIntent().getStringArrayListExtra("com.dt.activities.filesName");
-		filesName = new String[extra.size()];
-		for(int i=0;i<extra.size();i++)
+		setContentView(R.layout.file_upload_layout);
+		filesName = getIntent().getExtras().getStringArrayList("com.dt.activities.filesName");
+		TextView txtView = (TextView) findViewById(R.id.FileList);
+		for(String s:filesName)
 		{
-			filesName[i] = extra.get(i);
+			txtView.setText(txtView.getText()+ "\n"+s);
 		}
-		setContentView(R.layout.file_list_layout);
-		setListAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_multiple_choice,
-					filesName));
-		selection=(TextView)findViewById(R.id.selection);
-		final ListView listView = getListView();
-		listView.setItemsCanFocus(false);
-		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		try {
+			Upload();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	public void onListItemClick(ListView parent, View v, 
-			int position,long id) {
-	 	selection.setText(filesName[position]);
+	public void Upload() throws IOException
+	{
+		TextView txtView = (TextView) findViewById(R.id.FilesUploaded);
+		for(String s:filesName)
+		{
+			UploadController.Upload("192.168.0.100/upload.php", s);
+			txtView.setText(txtView.getText()+"\n"+s);
+		}
+		txtView.setText(txtView.getText()+"\nAll files is uploaded!");
 	}
-	
 }

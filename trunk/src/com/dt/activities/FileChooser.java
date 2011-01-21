@@ -70,30 +70,30 @@ public class FileChooser extends ListActivity {
 			currentDir = new File(o.getPath());
 			fill(currentDir);
 		} else {
-			onFileClick(o);
 			if (!selectedFiles.contains(o.getPath()))
 			{
+				onFileClick(o,  "File Selected: " + o.getName());
 				selectedFiles.add(o.getPath());
+				TextView fileViews = (TextView) findViewById(R.id.FileViews);
+				fileViews.setText(fileViews.getText()+"\n"+o.getPath());
 			}
-			l.setItemChecked(position, true);
-			TextView fileViews = (TextView) findViewById(R.id.FileViews);
-			fileViews.setText(fileViews.getText()+"\n"+o.getPath());
+			else onFileClick(o,"File was already in the upload list");
 		}
 	}
 	
-	private void onFileClick(Option o) {
-		Toast.makeText(this, "File Selected: " + o.getName(),
+	private void onFileClick(Option o,String message) {
+		Toast.makeText(this,message,
 						Toast.LENGTH_SHORT).show();
 	}
 	/* Creates the menu items */
     public boolean onCreateOptionsMenu(Menu menu) {    
-    	menu.add(0, 1, 0, "Show the selected files");        
+    	menu.add(0, 1, 0, "Check out");        
     	return true;
     }
     
     public boolean onOptionsItemSelected(MenuItem item) {       
 		Intent intent = new Intent();
-		intent.setComponent(new ComponentName("com.dt.activities", "com.dt.activities.FileUploader"));
+		intent.setComponent(new ComponentName("com.dt.activities", "com.dt.activities.FileReviewer"));
 		intent.putStringArrayListExtra("com.dt.activities.filesName", selectedFiles);
 		startActivity(intent);
     	return true;
