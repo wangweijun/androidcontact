@@ -9,9 +9,14 @@ import java.util.List;
 import com.dt.utils.FileArrayAdapter;
 import com.dt.utils.Option;
 
+import android.app.Activity;
 import android.app.ListActivity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,7 +24,7 @@ import android.widget.Toast;
 public class FileChooser extends ListActivity {
 	private File currentDir;
 	private FileArrayAdapter adapter;
-	private List<String> selectedFiles = new ArrayList<String>();
+	private ArrayList<String> selectedFiles = new ArrayList<String>();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,6 +84,14 @@ public class FileChooser extends ListActivity {
 	/* Creates the menu items */
     public boolean onCreateOptionsMenu(Menu menu) {    
     	menu.add(0, 1, 0, "Show the selected files");        
+    	return true;
+    }
+    
+    public boolean onOptionsItemSelected(MenuItem item) {       
+		Intent intent = new Intent();
+		intent.setComponent(new ComponentName("com.dt.activities", "com.dt.activities.FileUploader"));
+		intent.putStringArrayListExtra("com.dt.activities.filesName", selectedFiles);
+		startActivity(intent);
     	return true;
     }
 }
