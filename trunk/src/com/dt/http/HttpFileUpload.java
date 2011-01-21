@@ -15,6 +15,16 @@ public class HttpFileUpload implements Runnable {
 	long offset, length;
 	URL url;
 	int part;
+	int result = 0;
+
+	public int getResult() {
+		return result;
+	}
+
+	public void setResult(int result) {
+		this.result = result;
+	}
+
 	public void SetUploadParameter(URL url, File file, long offset, long length,int part) {
 		this.file = file;
 		this.url = url;
@@ -57,7 +67,7 @@ public class HttpFileUpload implements Runnable {
 			
 			FileInputStream inFile = new FileInputStream(file);
 			
-			int size = 1024;
+			int size = 1024*200;
 			FileChannel inChannel = inFile.getChannel();
 			ByteBuffer buf = ByteBuffer.allocate(size);
 			inChannel.position(offset);
@@ -88,15 +98,18 @@ public class HttpFileUpload implements Runnable {
 			}
 
 			inStream.close();
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
+			result = 1;
+		} 
+		catch(java.lang.OutOfMemoryError error)
+		{
+			result = -1;
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.print(e);
-		}
+			result=-1;
+		};
 	}
 
 }
